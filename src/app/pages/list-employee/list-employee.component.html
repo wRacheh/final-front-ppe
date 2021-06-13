@@ -1,0 +1,95 @@
+<p>La liste <code>Des Employées</code> </p>
+
+
+<form >
+    <div class="form-group">
+    <input type="text" nbInput fullWidth placeholder="Nom Employee" #nom="ngModel" [(ngModel)]="search.nom" name="nom"  required >
+    <br><br>
+    <button class="btn btn-primary" (click)="getEmployeeByName()" >Filtrer</button>
+    <button class="btn btn-info" (click)="refreshlist()" type="reset" >Reset</button>
+
+    </div>
+</form>
+<br><br>
+
+<table class="table table-bordered border-primary" style="background-color: aliceblue;">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prenom</th>
+            <th scope="col">Email</th>
+            <th scope="col">Departement</th>
+            <th scope="col">Modifier</th>
+            <th scope="col">Supprimer</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let element of listEmpl;let i = index" [class.active]="i == currentIndex">
+           
+            <td>{{element.id}}</td>
+            <td>{{element.nomEmp}}</td>
+            <td>{{element.prenomEmp}}</td>
+            <td>{{element.email}}</td>
+            <td *ngIf="element.department !=null">{{element.department.nomDept}}</td>
+            <td>
+                <button nbButton status="warning" (click)="setActiveEmp (element, i)" (click)="open(content)">Modifier</button>
+            </td>
+            <td>
+                <button type=button class="btn btn-danger"  (click)="setActiveEmp (element, i)"  (click)="deletEmpl()">Supprimer</button>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header ">
+        <h4 class="modal-title" id="modal-basic-title">Modifier Employée</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body ">
+        <form #updateForm="ngForm">
+            <div class="form-group  text-white">Nom
+                <label for="name"></label>
+                <div class="input-group">
+                    <input id="name" class="form-control" #nomEmp="ngModel"  [(ngModel)]="updFrm.nomEmp" name="nomEmp"  required placeholder="{{currentEmployee.nomEmp}}" type="text" required>
+                </div>
+            </div>
+            <div class="form-group  text-white">
+                <label for="prname">Prenom</label>
+                <div class="input-group">
+                    <input id="prname" class="form-control" placeholder="{{currentEmployee.prenomEmp}}" #prenomEmp="ngModel"  [(ngModel)]="updFrm.prenomEmp" name="prenomEmp"  required type="text">
+                </div>
+            </div>
+            <div class="form-group  text-white">
+                <label for="email">Email</label>
+                <div class="input-group">
+                    <input id="email" class="form-control" placeholder="{{currentEmployee.email}}" #email="ngModel"  [(ngModel)]="updFrm.email" name="email" value="currentEmployee.email" required  type="text">
+                </div>
+            </div>
+            <div class="full-name-inputs">
+                <label for="departement" class="text-white"> Departement</label>
+                <select class="form-select form-select-lg form-control"  aria-label=".form-select-lg example" #department="ngModel"  [(ngModel)]="updFrm.department" name="department"   required>
+                  <option class="form-control" *ngFor="let element of listDepartement"  [ngValue]="element">{{element.nomDept}}</option>
+                </select> 
+                </div>
+        
+            <div class="form-group  text-white">
+                <label for="departement" >Code</label>
+                <div class="input-group">
+                    <input id="departement" class="form-control"  #codeEmp="ngModel"  [(ngModel)]="updFrm.codeEmp" name="codeEmp"  required  placeholder="{{currentEmployee.codeEmp}}" 
+                        type="password">
+                </div>
+            </div>
+            <button *ngIf="updateForm.valid" nbButton status="info" (click)="updateEmpl() " type="reset"(click)="modal.close('Save click')">Confirmer</button>
+        </form>
+    </div>
+    <div class="modal-footer">
+        
+    </div>
+</ng-template>

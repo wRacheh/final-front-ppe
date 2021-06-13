@@ -1,0 +1,18 @@
+<p>Historique de pointage</p>
+
+<table class="table table-bordered border-primary" style="background-color: aliceblue;">
+    <thead>
+        <tr>
+            <th scope="col">Nom Employee</th>
+            <th scope="col">Date De poinatge / Heure pointage</th>
+   
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let elt of historique;">
+            <th scope="row" *ngIf="elt.employee != null">{{elt.employee.nomEmp}} {{elt.employee.prenomEmp}}</th>
+            <td>{{elt.DatePoin}}/{{elt.heureEntree}}</td>
+          
+        </tr>
+    </tbody>
+</table>

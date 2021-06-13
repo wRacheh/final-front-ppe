@@ -1,0 +1,23 @@
+<p>Les Demandes De Congé </p>
+
+<table class="table table-bordered border-primary" style="background-color: aliceblue;">
+    <thead>
+        <tr>
+            <th scope="col">Date De Début</th>
+            <th scope="col">Date De Fin</th>
+            <th scope="col">Cause</th>
+            <th scope="col">Status</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let elt of listConge">
+            <td>{{elt.dateDebut}}</td>
+            <td>{{elt.dateFin}}</td>
+            <td>{{elt.motif}}</td>
+            <td>{{elt.status}}</td>
+
+      
+        </tr>
+    </tbody>
+</table>

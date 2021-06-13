@@ -1,0 +1,44 @@
+<div class="col-lg-12">
+    <nb-card>
+      <nb-card-header>Ajouter Nouveau Employee</nb-card-header>
+      <nb-card-body>
+        <form #addForm="ngForm" (ngSubmit)="addEmployee()">
+        <div class="full-name-inputs">
+          <input type="text" nbInput fullWidth placeholder="Nom"  #nomEmp="ngModel"  [(ngModel)]="addFrm.nomEmp"  name="nomEmp" required >
+      
+          <input type="text" nbInput fullWidth placeholder="Prenom"  #prenomEmp="ngModel"  [(ngModel)]="addFrm.prenomEmp"  name="prenomEmp" required>
+         
+        </div>
+        <p class="text-danger" *ngIf="nomEmp.invalid && nomEmp.touched ">
+          Nom est Obligatoire !
+        </p>
+        <p class="text-danger" *ngIf="prenomEmp.invalid && prenomEmp.touched  ">
+          Prenom est Obligatoire !
+        </p>
+        <div class="full-name-inputs">
+            <input type="email" nbInput fullWidth placeholder="Email" #email="ngModel"  [(ngModel)]="addFrm.email"  name="email" required>
+            <input type="password" nbInput fullWidth placeholder="Mot De Passe"  #password="ngModel"  [(ngModel)]="addFrm.password"  name="password" required>
+          </div>
+          <p class="text-danger" *ngIf="email.invalid && email.touched ">
+            Email est Obligatoire !
+          </p>
+            <p class="text-danger" *ngIf="password.invalid && password.touched ">
+            Mot de passe est Obligatoire !
+          </p>
+        <div class="full-name-inputs">
+        <input type="passwordd" nbInput fullWidth shape="rectangle" placeholder="Code" #codeEmp="ngModel"  [(ngModel)]="addFrm.codeEmp"  name="codeEmp" required>
+        <select class="form-select form-select-lg form-control"  aria-label=".form-select-lg example" #department="ngModel"  [(ngModel)]="addFrm.department" name="department"   required>
+          <option class="form-control" *ngFor="let element of departementList"  [ngValue]="element">{{element.nomDept}}</option>
+        </select> 
+        </div>
+        <p class="text-danger" *ngIf="codeEmp.invalid && codeEmp.touched ">
+         Code est Obligatoire !
+        </p>
+        <p class="text-danger" *ngIf="department.invalid && department.touched ">
+          department est Obligatoire !
+         </p>
+        <button type="submit" nbButton status="success" id="ajouter" *ngIf="addForm.valid">Ajouter Employee</button>
+      </form>
+      </nb-card-body>
+    </nb-card>
+  </div>

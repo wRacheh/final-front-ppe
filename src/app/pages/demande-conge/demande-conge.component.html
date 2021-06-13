@@ -1,0 +1,54 @@
+<nb-card>
+    <nb-card-header>
+        <h2>Demander un congé</h2>
+    </nb-card-header>
+    <nb-card-body>
+        <form role="form" #conge="ngForm">
+            <div class="row">
+
+              <div class="col-md-6">
+                  <div class="form-group">
+                      <span>Date Début</span>
+                      <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd" type="date" 
+                        name="dateDebut" [(ngModel)]="congeFrm.dateDebut "  #dateDebut="ngModel"  id="dateDebut" required>
+                        
+                      </div>
+                      <p class="text-danger" *ngIf="dateDebut.invalid && dateDebut.touched ">
+                        date Debut est Obligatoire !
+                       </p>
+                    </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="form-group">
+                      <span>Date Fin</span>
+                      <div class="input-group">
+                        <input class="form-control" placeholder="yyyy-mm-dd" type="date" 
+                        name="dateFin" [(ngModel)]="congeFrm.dateFin " #dateFin="ngModel" required>
+                 
+                      </div>
+                      <p class="text-danger" *ngIf="dateFin.invalid && dateFin.touched ">
+                        date Debut est Obligatoire !
+                       </p>
+                    </div>
+              </div>
+            </div>
+      
+
+        <br>
+              <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Cause</label>
+                  <textarea rows="5" nbInput fullWidth class="form-control"  #motif="ngModel" name="motif" [(ngModel)]="congeFrm.motif" placeholder="cause" required></textarea>
+                </div>
+                <p class="text-danger" *ngIf="motif.invalid && motif.touched ">
+                  La cause est Obligatoire !
+                 </p>         
+           
+            <div class="text-center">
+            </div>
+          </form>    </nb-card-body>
+    <nb-card-footer>
+        <button type="button"(click)="demanderconge()" class="btn btn-primary " [disabled]="!conge.valid" >Envoyer demande</button>
+
+    </nb-card-footer>
+</nb-card>

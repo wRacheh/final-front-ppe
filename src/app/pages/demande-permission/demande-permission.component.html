@@ -1,0 +1,55 @@
+<nb-card>
+    <nb-card-header>
+        <h2>Demander une permission de sortie</h2>
+    </nb-card-header>
+    <nb-card-body>
+        <form role="form" #permission="ngForm">
+            <div class="row">
+
+              <div class="col-md-6">
+                  <div class="form-group">
+                      <span>Heure Début</span>
+                      <div class="input-group">
+                        <input class="form-control"  type="time" 
+                        name="heureDebut" [(ngModel)]="perFrm.heureDebut " #heureDebut="ngModel" id="dateDebut" required >
+                   
+                      </div>
+                      <p class="text-danger" *ngIf="heureDebut.invalid && heureDebut.touched ">
+                        Heure de sortie est Obligatoire !
+                       </p>
+                    </div>
+              </div>
+              <div class="col-md-6">
+                  <div class="form-group">
+                      <span>Heure Fin</span>
+                      <div class="input-group">
+                        <input class="form-control" type="time" 
+                        name="heureFin" [(ngModel)]="perFrm.heureFin " #heureFin="ngModel" required>
+                 
+                      </div>
+                      <p class="text-danger" *ngIf="heureFin.invalid && heureFin.touched ">
+                        Heure de retour est Obligatoire !
+                       </p>
+                    </div>
+              </div>
+            </div>
+      
+
+        <br>
+              <div class="form-group">
+                  <label for="exampleFormControlTextarea1">Cause</label>
+                  <textarea rows="5" nbInput fullWidth class="form-control"  name="motif" [(ngModel)]="perFrm.motif " #motif="ngModel" placeholder="cause" required></textarea>
+                </div>
+                <p class="text-danger" *ngIf="motif.invalid && motif.touched ">
+                 La cause est Obligatoire !
+                 </p>
+         
+           
+            <div class="text-center">
+            </div>
+          </form>    </nb-card-body>
+    <nb-card-footer>
+        <button type="button" class="btn btn-primary " (click)="demanderPermission()" [disabled]="!permission.valid" >Envoyer demande</button>
+
+    </nb-card-footer>
+</nb-card>

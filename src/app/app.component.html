@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<nb-layout>
+  <nb-layout-header subheader>
+    <button class="btn btn-link" id="toggle" (click)="toggle()">
+      <nb-icon icon="list-outline"></nb-icon>
+    </button>
+
+ 
+    <button class="btn text-white" id="login"  *ngIf="isConnected" routerLink="/profile"><i class="fa fa-user-circle" aria-hidden="true"></i>
+      Profile</button>
+    <button class="btn text-white"  *ngIf="!isConnected"routerLink="/login"><i class="fa fa-sign-in" style="color: aliceblue;"
+        aria-hidden="true"></i> Login</button>
+    <button class="btn text-white"  *ngIf="isConnected" (click)="logout()"><i class="fa fa-sign-out" style="color: aliceblue;" aria-hidden="true"></i>
+      Logout</button>
+      <button class="btn text-white"  routerLink="/pointage"><i class="fa fa-barcode" style="color: aliceblue;" aria-hidden="true"></i>
+        Pointage</button>
+
+  
+  </nb-layout-header>
+  <nb-sidebar *ngIf="isConnected">
+    <a class="navbar-brand pt-0" routerLinkActive="active" [routerLink]="['/dashboard']">
+      <img src="./assets/logo/logo4.png" style="width: 180px; height: 9rem; margin: 10px;" class="navbar-brand-img"
+        alt="...">
+      <br>
+    </a>
+    <nb-menu [items]="admin" class="own-scroll" *ngIf="isAdmin">
+    </nb-menu>
+    <nb-menu [items]="employee" class="own-scroll" *ngIf="!isAdmin">
+    </nb-menu>
+  </nb-sidebar>
+  <nb-layout-column class="colored-column-basic">
+    <router-outlet></router-outlet>
+  </nb-layout-column>
+  <nb-layout-footer subheader>
+    <div class="copyright text-center text-xl-left text-muted">
+      &copy; {{ test | date: "yyyy" }} <a class="font-weight-bold ml-1"> 4 Ing B || </a> <a href="#">Wassim Racheh ||
+        Aymen Bennasr ||
+        Siwar Zouaoui</a>
+    </div>
+
+  </nb-layout-footer>
+</nb-layout>

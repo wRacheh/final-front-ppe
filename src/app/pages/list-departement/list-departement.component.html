@@ -1,0 +1,68 @@
+<p>La liste <code>Des Départements</code> </p>
+
+<form >
+    <div class="form-group">
+    <input type="text" nbInput fullWidth placeholder="Nom departement" #nom="ngModel" [(ngModel)]="search.nom" name="nom"  required >
+    <br><br>
+    <button class="btn btn-primary" (click)="getdepartementByName()" >Filtrer</button>
+    <button class="btn btn-info" (click)="refreshlist()" type="reset" >Reset</button>
+
+    </div>
+</form>
+<br><br>
+<table class="table table-bordered border-primary" style="background-color: aliceblue;">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom Département</th>
+            <th scope="col">Nombre D'heures</th>
+            <th scope="col">Modifier</th>
+            <th scope="col">Supprimer</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let elmt of listDep;let i = index" [class.active]="i == currentIndex">
+            <th scope="row">{{elmt.idDep}}</th>
+            <td>{{elmt.nomDept}}</td>
+            <td>{{elmt.nbHheure}}</td>
+            <td>
+                <button nbButton status="warning" hero (click)="setActiveDep (elmt, i)" (click)="open(content)">Modifier</button>
+            </td>
+            <td>
+                <button nbButton status="danger" hero (click)="setActiveDep (elmt, i)"  (click)="deletDep()">Supprimer</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+<ng-template #content let-modal>
+    <div class="modal-header ">
+        <h4 class="modal-title" id="modal-basic-title">Modifier Employée</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body ">
+        <form #updateForm="ngForm">
+            <div class="form-group  text-white">Nom Departement
+                <label for="name"></label>
+                <div class="input-group">
+                    <input id="name"  name="nomDept" #nomDept="ngModel" [(ngModel)]="updFrm.nomDept" class="form-control"  placeholder="{{currentDep.nomDept}}"  type="text" required>
+                </div>
+            </div>
+            <div class="form-group  text-white">
+                <label for="prname">nombre d'heure</label>
+                <div class="input-group">
+                    <input id="prname" class="form-control" name="nbHheure" #nbHheure="ngModel" [(ngModel)]="updFrm.nbHheure" class="form-control"  placeholder="{{currentDep.nbHheure}}"  type="number" required>
+                </div>
+            </div>
+            <button type="reset" nbButton status="info" *ngIf="updateForm.valid" (click)="updateDepartement()"(click)="modal.close('Save click')">Confirmer</button>
+        </form>
+    </div>
+    <div class="modal-footer">
+       
+    </div>
+</ng-template>

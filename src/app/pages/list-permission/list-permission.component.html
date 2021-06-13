@@ -1,0 +1,24 @@
+<p>Les Demandes De Permission De Sortie </p>
+
+<table class="table table-bordered border-primary" style="background-color: aliceblue;">
+    <thead>
+        <tr>
+            <th scope="col">Date De Début</th>
+            <th scope="col">Date De Fin</th>
+            <th scope="col">Cause</th>
+            <th scope="col">Status</th>
+
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let elt of listPermission">
+            <td>{{elt.heureDebut}}</td>
+            <td>{{elt.heureFin}}</td>
+            <td>{{elt.motif}}</td>
+            <td>{{elt.status}}</td>
+
+       
+        </tr>
+    </tbody>
+</table>

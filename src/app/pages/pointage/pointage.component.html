@@ -1,0 +1,55 @@
+<nb-card>
+<nb-card-header>
+    <h1 id="title" class="title">Pointage</h1>
+    <p class="sub-title">Entrer votre code Secret de pointage</p>
+    
+    
+</nb-card-header>
+
+<nb-card-body>
+
+
+<form aria-labelledby="title" #pointage="ngForm">
+
+  <div class="form-control-group">
+    <label class="label" for="input-email">Code Secret:</label>
+    <input nbInput
+           type="password"
+           id="input-email"
+           placeholder="code"
+           autofocus
+           fullWidth
+           class="form-control"
+           fieldSize="large"
+           name="code" 
+           [(ngModel)]="pointagefrm.code "
+            #code="ngModel"
+            required
+          >
+          <br> <br>
+    <ng-container>
+      <p class="caption status-danger" *ngIf="code.invalid && code.touched" >
+      Code Is Required
+      </p>
+      <p class="caption status-danger">
+      
+    </ng-container>
+  </div>
+  <button nbButton
+  type="reset"
+  fullWidth
+  status="primary"
+  size="large"
+  (click)="pointer()"
+  [disabled]="!pointage.valid"
+ >
+Pointer
+</button>
+</form>
+    
+</nb-card-body>
+<nb-card-footer>
+
+   
+</nb-card-footer>
+</nb-card>

@@ -1,0 +1,65 @@
+<p>Les Demandes De Congé </p>
+
+<table class="table table-bordered border-primary" style="background-color: aliceblue;">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Date De Début</th>
+            <th scope="col">Date De Fin</th>
+            <th scope="col">Status</th>
+            <th scope="col">Cause</th>
+            <th scope="col">Modifier</th>
+            <th scope="col">Supprimer</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let elt of congelist;let i = index"
+        [class.active]="i == currentIndex">
+            <th scope="row">{{elt.idCon}}</th>
+            <td>{{elt.dateDebut}}</td>
+            <td>{{elt.dateFin}}</td>
+            <td>{{elt.motif}}</td>
+            <td>{{elt.status}}</td>
+
+            <td>
+                <button nbButton status="warning" hero  (click)="setActiveConge(elt, i)" (click)="open(content)">Modifier</button>
+            </td>
+            <td>
+                <button nbButton status="danger" hero  (click)="setActiveConge(elt, i)" (click)="deletConge()">Supprimer</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Demande de {{currentConge.employee.nomEmp}} {{currentConge.employee.prenomEmp}}</h4>
+
+      <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <h4 class="modal-title" id="modal-basic-title"> De  <span class="text-primary">{{currentConge.dateDebut}} </span>à  <span class="text-primary">{{currentConge.dateFin}} </span></h4>
+<br>
+<h4 class="modal-title" id="modal-basic-title"><span class="title text-light"> Motif:</span>
+  <br><br>
+    <span class="text-white">{{currentConge.motif}} </span>
+  </h4>
+<br><br>
+      <div class="input-group mb-3">
+        <label class="input-group-text " for="inputGroupSelect03">Reponse</label>   
+        <select class="form-select form-control" id="inputGroupSelect03" aria-label="Example select with button addon" #status="ngModel"  [(ngModel)]="currentConge.status"  name="status" >
+          <option selected value="choose" disabled>Choose...</option>
+          <option value="Acceptée">Acceptée</option>
+          <option value="Refusée">Refusée</option>
+        </select>
+      </div>    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark"(click)="updateConge()" (click)="c('Save click')">Repondre</button>
+    </div>
+  </ng-template>

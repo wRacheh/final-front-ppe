@@ -1,0 +1,26 @@
+<div class="col-lg-12" >
+    <nb-card [nbSpinner]="loading" nbSpinnerStatus="danger">
+      <nb-card-header>Ajouter Nouveau Département</nb-card-header>
+      <nb-card-body>
+       <form #addForm="ngForm" (ngSubmit)="addDepartement()">
+        <div class="full-name-inputs">
+          <input type="text" nbInput fullWidth  placeholder="Nom Département" name="nomDept" #nomDept="ngModel" [(ngModel)]="addFrm.nomDept" required minlength="3">
+        </div>
+        <p class="text-danger" *ngIf="nomDept.invalid && nomDept.touched">
+          Nom de departement est obligatoire !
+        </p>
+        <br><br>
+        <div class="full-name-inputs">
+           
+            <input type="number" nbInput fullWidth placeholder="Nombre d'heure" name="nbHheure" #nbHheure="ngModel" [(ngModel)]="addFrm.nbHheure" required>
+          </div>
+          <p class="text-danger" *ngIf="nbHheure.invalid && nbHheure.touched">
+            Nombre d'heure est obligatoire !
+          </p>
+       <br><br>
+       
+        <button nbButton status="success" id="ajouter"  *ngIf="addForm.valid" >Ajouter Departement</button>
+      </form>
+      </nb-card-body>
+    </nb-card>
+  </div>

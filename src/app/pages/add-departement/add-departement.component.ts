@@ -13,7 +13,8 @@ export class AddDepartementComponent implements OnInit {
   private index: number = 0;
   public addFrm: Departements = {};
   public listDepartement: Departements[] = [];
-
+  error=""
+  success=""
 
   @HostBinding('class')
   classes = 'example-items-rows';
@@ -26,26 +27,25 @@ export class AddDepartementComponent implements OnInit {
     //this.index += 1;
     this.toastrService.show(
       status || 'success',
-      `departement ajouté avce succées`,
+      this.success,
       { position, status });
   } showToastError(position: any, status: any) {
     //this.index += 1;
     this.toastrService.show(
-      status || 'Error!',
-      `Error lors de la creation du département`,
+      status || '',
+      this.error,
       { position, status });
   }
 
   addDepartement() {
     this.adminService.addDepartement(this.addFrm).subscribe(res => {
-      console.log(res)
       this.listDepartement = res;
-      setTimeout(() => this.showToastSuccess('top-right', 'success'), 1000);
-
+      setTimeout(() => this.showToastSuccess('top-right', 'success'), 100);
+      this.success=res.message
     },
       error => {
-        console.log(error);
-        setTimeout(() => this.showToastError('top-right', 'danger'), 1000);
+        this.error=error.error.message;
+        setTimeout(() => this.showToastError('top-right', 'danger'), 100);
       })
   }
 

@@ -41,5 +41,7 @@ export class PermissionService {
   deletAllPermission():Observable<any>{
     return this.http.delete("http://localhost:8024/api/demande/listeDemande/permission/delet-all/")
   }
-
+  getPermissionByemployeeName(name:any):Observable<any>{
+    return this.http.get(("http://localhost:8023/permission/name/"+name))
+  }
 }

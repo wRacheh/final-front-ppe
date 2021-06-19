@@ -19,11 +19,7 @@
   
   </nb-layout-header>
   <nb-sidebar *ngIf="isConnected">
-    <a class="navbar-brand pt-0" routerLinkActive="active" [routerLink]="['/dashboard']">
-      <img src="./assets/logo/logo4.png" style="width: 180px; height: 9rem; margin: 10px;" class="navbar-brand-img"
-        alt="...">
-      <br>
-    </a>
+systéme de pointage dégital
     <nb-menu [items]="admin" class="own-scroll" *ngIf="isAdmin">
     </nb-menu>
     <nb-menu [items]="employee" class="own-scroll" *ngIf="!isAdmin">
@@ -34,9 +30,32 @@
   </nb-layout-column>
   <nb-layout-footer subheader>
     <div class="copyright text-center text-xl-left text-muted">
-      &copy; {{ test | date: "yyyy" }} <a class="font-weight-bold ml-1"> 4 Ing B || </a> <a href="#">Wassim Racheh ||
-        Aymen Bennasr ||
-        Siwar Zouaoui</a>
+
+      <div class="row fullWidth">
+       
+          &copy; {{ test | date: "yyyy" }}  Team 4 ING B 
+       
+      </div>
+      <div class="row ">
+        <div class="col">
+          Wassim 
+        </div>
+        <div class="col">Aymen   
+        </div>
+        <div class="col">Siwar 
+        </div>
+      </div>
+      <div class="row ">
+        <div class="col">
+          Racheh 
+        </div>
+        <div class="col">Bennasr   
+        </div>
+        <div class="col">Zouaoui 
+        </div>
+      </div>
+
+
     </div>
 
   </nb-layout-footer>

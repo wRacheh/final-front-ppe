@@ -4,7 +4,7 @@ export interface Conge {
     idCon?:any;
     dateDebut?:Date;
     dateFin?:Date;
-    employe?:Employee;
+    employee?:Employee;
     status?:"";
     motif?:String
 }

@@ -9,17 +9,20 @@ import { CongeService } from 'src/app/services/conge.service';
   styleUrls: ['./all-conge.component.scss']
 })
 export class AllCongeComponent implements OnInit {
-public congelist :Conge []=[]
-currentConge :any;
-currentIndex = -1;
-public closeResult = '';
-  constructor(private modalService: NgbModal,private conge:CongeService ) { }
+  public congelist: Conge[] = []
+  currentConge: any;
+  currentIndex = -1;
+  frmname = {
+    name: ""
+  }
+  public closeResult = '';
+  constructor(private modalService: NgbModal, private conge: CongeService) { }
 
   ngOnInit(): void {
     this.getConges();
   }
 
-  setActiveConge(_conge:any, index:any): void {
+  setActiveConge(_conge: any, index: any): void {
     this.currentConge = _conge;
     this.currentIndex = index;
   }
@@ -33,25 +36,23 @@ public closeResult = '';
           console.log(error)
         }
       );
-   // location.reload()
   }
   updateConge(): void {
     this.conge.updateConge(this.currentConge.idCon, this.currentConge)
       .subscribe(
         response => {
-         this.getConges()
+          this.getConges()
         },
         error => {
           console.log(error);
         }
       )
-     
+
   }
   getConges() {
     this.conge.getAllConge().subscribe(
       res => {
         this.congelist = res
-        console.log(res)
       },
       error => {
         console.log(error)
@@ -59,7 +60,21 @@ public closeResult = '';
     )
 
   }
+  getCongeByEmployerName() {
+    this.conge.getCongeByNomEmployee(this.frmname.name).subscribe(res => {
+      this.congelist = res
+      console.log(this.congelist[0].employee?.nomEmp)
 
+    },
+      error => {
+        console.log(error)
+      }
+    )
+  }
+
+  refreshlist(){
+    this.getConges();
+  }
   open(content: any) {
     this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {
       this.closeResult = `Closed with: ${result}`;

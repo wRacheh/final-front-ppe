@@ -12,6 +12,7 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
 export class ListPermissionComponent implements OnInit {
   nomEmployee: any
   currentUser: any
+
   public listPermission: Permission[] = []
   constructor(private token: TokenStorageService, private permission: PermissionService) { }
 
@@ -27,7 +28,6 @@ export class ListPermissionComponent implements OnInit {
   getMyPermission() {
     this.permission.getPermissionByEmployer(this.nomEmployee).subscribe(res => {
       this.listPermission=res
-      console.log(this.listPermission)
     }, error=>{
       console.log(error)
     })

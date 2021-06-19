@@ -42,5 +42,7 @@ export class CongeService {
     return this.http.put("http://localhost:8024/api/demande/listeDemande/conge/"+id,conge)
   }
 
-
+  getCongeByNomEmployee(name:any):Observable<any>{
+    return this.http.get("http://localhost:8023/conge/name/"+name)
+  }
 }

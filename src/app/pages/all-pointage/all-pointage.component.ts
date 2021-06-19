@@ -9,6 +9,8 @@ import { AdminService } from 'src/app/services/admin.service';
 })
 export class AllPointageComponent implements OnInit {
 public listP :Pointage[]=[]
+
+public nameEmpl ={name:""}
   constructor(private admin:AdminService) { }
 
   ngOnInit(): void {
@@ -23,5 +25,20 @@ public listP :Pointage[]=[]
     },error=>{
       console.log(error)
     })
+  }
+
+  filtrerPointage(){
+    this.admin.getPointageByEmployername(this.nameEmpl.name).subscribe(
+      res=>{
+        this.listP=res;
+      },
+      error=>{console.log(error)
+
+      }
+    )
+  }
+
+  refreshlist(){
+    this.getAllPointage()
   }
 }

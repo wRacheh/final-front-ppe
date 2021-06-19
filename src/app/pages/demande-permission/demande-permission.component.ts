@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { Permission } from 'src/app/models/permission';
 import { PermissionService } from 'src/app/services/permission.service';
@@ -12,7 +13,7 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
 export class DemandePermissionComponent implements OnInit {
   empl:any
   public perFrm : Permission={}
-  constructor(private toastrService: NbToastrService,private permission:PermissionService,private token:TokenStorageService) { }
+  constructor(private toastrService: NbToastrService,private permission:PermissionService,private token:TokenStorageService, private router:Router) { }
 
   ngOnInit(): void {
     this.empl=this.token.getUser();
@@ -28,11 +29,11 @@ export class DemandePermissionComponent implements OnInit {
     }
     this.permission.demanderPermission(data).subscribe(
       Response=>{
-        console.log(data)
-        setTimeout(() => this.showToastSuccess('top-right', 'success'), 1000);
+        setTimeout(() => this.showToastSuccess('top-right', 'success'), 100,this.router.navigate(["/historique/permlssion"])
+        );
       },
       error=>{
-        setTimeout(() => this.showToastError('top-right', 'danger'), 1000);
+        setTimeout(() => this.showToastError('top-right', 'danger'), 100);
       }
     )
 

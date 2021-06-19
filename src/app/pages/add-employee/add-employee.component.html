@@ -26,7 +26,7 @@
             Mot de passe est Obligatoire !
           </p>
         <div class="full-name-inputs">
-        <input type="passwordd" nbInput fullWidth shape="rectangle" placeholder="Code" #codeEmp="ngModel"  [(ngModel)]="addFrm.codeEmp"  name="codeEmp" required>
+        <input type="password" nbInput fullWidth shape="rectangle" placeholder="Code" #codeEmp="ngModel"  [(ngModel)]="addFrm.codeEmp"  name="codeEmp" required>
         <select class="form-select form-select-lg form-control"  aria-label=".form-select-lg example" #department="ngModel"  [(ngModel)]="addFrm.department" name="department"   required>
           <option class="form-control" *ngFor="let element of departementList"  [ngValue]="element">{{element.nomDept}}</option>
         </select> 

@@ -24,7 +24,6 @@ export class ListCongeComponent implements OnInit {
   GetCongeByEmployee(){
     this.conge.getCongeByEmployee(this.nomEmployee).subscribe(res=>{
       this.listConge=res;
-      console.log(this.listConge)
     })
   }
 }

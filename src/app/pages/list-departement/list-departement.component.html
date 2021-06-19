@@ -4,16 +4,15 @@
     <div class="form-group">
     <input type="text" nbInput fullWidth placeholder="Nom departement" #nom="ngModel" [(ngModel)]="search.nom" name="nom"  required >
     <br><br>
-    <button class="btn btn-primary" (click)="getdepartementByName()" >Filtrer</button>
-    <button class="btn btn-info" (click)="refreshlist()" type="reset" >Reset</button>
+    <button class="btn btn-outline-primary" (click)="getdepartementByName()" >Filtrer</button>
+    <button class="btn btn-outline-info" (click)="refreshlist()" type="reset" >Reset</button>
 
     </div>
 </form>
 <br><br>
-<table class="table table-bordered border-primary" style="background-color: aliceblue;">
+<table class="table table-bordered border-primary">
     <thead>
         <tr>
-            <th scope="col">#</th>
             <th scope="col">Nom Département</th>
             <th scope="col">Nombre D'heures</th>
             <th scope="col">Modifier</th>
@@ -22,14 +21,13 @@
     </thead>
     <tbody>
         <tr *ngFor="let elmt of listDep;let i = index" [class.active]="i == currentIndex">
-            <th scope="row">{{elmt.idDep}}</th>
             <td>{{elmt.nomDept}}</td>
             <td>{{elmt.nbHheure}}</td>
             <td>
                 <button nbButton status="warning" hero (click)="setActiveDep (elmt, i)" (click)="open(content)">Modifier</button>
             </td>
             <td>
-                <button nbButton status="danger" hero (click)="setActiveDep (elmt, i)"  (click)="deletDep()">Supprimer</button>
+                <button nbButton status="danger" hero (click)="setActiveDep (elmt, i)"  (click)="deletDep()" (clcik)="refreshlist()">Supprimer</button>
             </td>
         </tr>
     </tbody>

@@ -36,14 +36,12 @@ export class PointageComponent implements OnInit {
     this.pointage.pointer(data, this.pointagefrm.code)
       .subscribe(
         res => {
-          console.log(res)
-          setTimeout(() => this.showToastSuccess('top-right', 'success'), 500);
+          setTimeout(() => this.showToastSuccess('top-right', 'success'), 100);
           this.router.navigate(["/login"])
         },
         error => {
           console.log(error);
-          setTimeout(() => this.showToastError('top-right', 'danger'), 500);
-
+          setTimeout(() => this.showToastError('top-right', 'danger'), 100);
         }
       )
   }

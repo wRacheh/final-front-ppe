@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
   bellIconConfig: NbIconConfig = { icon: 'bell-outline', pack: 'eva' };
   constructor(private sidebarService: NbSidebarService, private router: Router, private token: TokenStorageService) {
   }
-  title = 'ppe-ngx';
 
 
   ngOnInit() {
@@ -43,9 +42,8 @@ export class AppComponent implements OnInit {
   toggle() {
     this.sidebarService.toggle(false, 'left');
   }
-  logout(){
+  logout() {
     this.token.signOut();
-   // this.router.navigate(['/login'])
     location.reload()
   }
 
@@ -82,8 +80,8 @@ export class AppComponent implements OnInit {
       icon: 'chevron-right',
       expanded: false,
       children: [
-       
-       
+
+
         {
           title: 'Demander un congé',
           icon: 'barcode-outline',
@@ -156,6 +154,12 @@ export class AppComponent implements OnInit {
         },
 
       ],
+    },
+    {
+      title: 'Tous les pointages',
+      icon: 'chevron-right',
+      expanded: false,
+      link: 'pointage/all'
     },
 
 

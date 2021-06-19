@@ -5,17 +5,16 @@
     <div class="form-group">
     <input type="text" nbInput fullWidth placeholder="Nom Employee" #nom="ngModel" [(ngModel)]="search.nom" name="nom"  required >
     <br><br>
-    <button class="btn btn-primary" (click)="getEmployeeByName()" >Filtrer</button>
-    <button class="btn btn-info" (click)="refreshlist()" type="reset" >Reset</button>
+    <button class="btn btn-outline-primary" (click)="getEmployeeByName()" >Filtrer</button>
+    <button class="btn btn-outline-info" (click)="refreshlist()" type="reset" >Reset</button>
 
     </div>
 </form>
 <br><br>
 
-<table class="table table-bordered border-primary" style="background-color: aliceblue;">
+<table class="table table-bordered " >
     <thead>
         <tr>
-            <th scope="col">#</th>
             <th scope="col">Nom</th>
             <th scope="col">Prenom</th>
             <th scope="col">Email</th>
@@ -28,7 +27,6 @@
     <tbody>
         <tr *ngFor="let element of listEmpl;let i = index" [class.active]="i == currentIndex">
            
-            <td>{{element.id}}</td>
             <td>{{element.nomEmp}}</td>
             <td>{{element.prenomEmp}}</td>
             <td>{{element.email}}</td>

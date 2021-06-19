@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { NbToastrService } from '@nebular/theme';
 import { error } from 'protractor';
 import { Conge } from 'src/app/models/conge';
@@ -17,7 +18,7 @@ export class DemandeCongeComponent implements OnInit {
   public congeFrm : Conge={}
 
 
-  constructor(private toastrService: NbToastrService,private conge : CongeService,private token:TokenStorageService) { }
+  constructor(private router:Router ,private toastrService: NbToastrService,private conge : CongeService,private token:TokenStorageService) { }
 
   ngOnInit(): void {
     this.empl= this.token.getUser();
@@ -36,10 +37,10 @@ export class DemandeCongeComponent implements OnInit {
     this.conge.demanderConge(data).subscribe(
      
       Response=>{
-        setTimeout(() => this.showToastSuccess('top-right', 'success'), 1000);
+        setTimeout(() => this.showToastSuccess('top-right', 'success'), 100,this.router.navigate(["/historique/conge"]));
       },
 error=>{
-  setTimeout(() => this.showToastError('top-right', 'danger'), 1000);
+  setTimeout(() => this.showToastError('top-right', 'danger'), 100);
 
 }
     )

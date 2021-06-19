@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy } from '@angular/compiler/src/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { NbToastrService } from '@nebular/theme';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { error } from 'protractor';
@@ -9,9 +10,9 @@ import { AdminService } from 'src/app/services/admin.service';
 @Component({
   selector: 'app-list-employee',
   templateUrl: './list-employee.component.html',
-  styleUrls: ['./list-employee.component.scss']
+  styleUrls: ['./list-employee.component.scss'],
 })
-export class ListEmployeeComponent implements OnInit {
+export class ListEmployeeComponent implements OnInit,OnChanges  {
   public closeResult = '';
   public listEmpl: Employee[] = [];
   public listDepartement: Departements[] = [];
@@ -25,20 +26,25 @@ export class ListEmployeeComponent implements OnInit {
   }
   constructor(toastrService: NbToastrService, private modalService: NgbModal, private admin: AdminService) {
   }
+
+
   ngOnInit(): void {
     this.getAllEmployee();
     this.getAllDepartement();
   }
+  ngOnChanges(){
+    this.getAllEmployee();
+
+  }
+  
 
 
   setActiveEmp(_employee: any, index: any): void {
     this.currentEmployee = _employee;
-    console.log(this.currentEmployee)
     this.currentIndex = index;
   }
   getAllDepartement() {
     this.admin.getAll().subscribe(res => {
-      console.log(res);
       this.listDepartement = res
     },
       error => {
@@ -54,7 +60,6 @@ export class ListEmployeeComponent implements OnInit {
 
   updateEmpl() {
     this.admin.updateEmployee(this.currentEmployee.id, this.updFrm).subscribe(res => {
-      console.log(res);
       this.getAllEmployee();
 
     },error=>{
@@ -66,7 +71,6 @@ export class ListEmployeeComponent implements OnInit {
     this.admin.deletEmployeeById(this.currentEmployee.id)
     .subscribe(
       response=>{
-        console.log(response);
         this.getAllEmployee();
         this.currentEmployee=null
       },   

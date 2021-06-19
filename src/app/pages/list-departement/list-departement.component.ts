@@ -27,7 +27,6 @@ export class ListDepartementComponent implements OnInit {
 
   deletDep(){
     this.admin.deleteDepartement(this.currentDep.idDep).subscribe(res=>{
-      console.log(res)
       this.getAllDepartements()
     },error=>{
       console.log(error)
@@ -58,10 +57,10 @@ export class ListDepartementComponent implements OnInit {
     this.currentIndex = index;
 
   }
-
+  
   updateDepartement(){
     this.admin.updateDepartement(this.currentDep.idDep, this.updFrm).subscribe(res=>{
-      console.log(res)
+      
       setTimeout(() => this.showToastUpdateSuccess('top-right', 'success'), 1000);
       this.getAllDepartements()
     },

@@ -16,7 +16,6 @@ export class HistoriquePointageComponent implements OnInit {
 
   ngOnInit(): void {
     this.employee= this.token.getUser();
-    console.log(this.employee)
     this.getMesPointage()
   }
 
@@ -25,7 +24,6 @@ export class HistoriquePointageComponent implements OnInit {
   getMesPointage(){
     this.admin.getMespointage(this.employee.nom).subscribe(res=>{
       this.historique=res
-      console.log(this.historique)
     })
   }
 }

@@ -1,16 +1,26 @@
 <p>Historique de pointage</p>
+<form >
+    <div class="form-group">
+    <input type="text" nbInput fullWidth placeholder="Nom employee" #name="ngModel" [(ngModel)]="nameEmpl.name" name="name"  required >
+    <br><br>
+    <button class="btn btn-outline-primary" (click)="filtrerPointage()" >Filtrer</button>
+    <button class="btn btn-outline-info" (click)="refreshlist()" type="reset" >Reset</button>
 
+    </div>
+</form>
 <table class="table table-bordered border-primary" style="background-color: rgba(1, 31, 58, 0.562); color: aliceblue;">
     <thead>
         <tr>
             <th scope="col" style="background-color: #222B45;">Nom Employee</th>
-            <th scope="col" style="background-color: #222B45;">Date De poinatge/Heure De pointage</th>
+            <th scope="col" style="background-color: #222B45;">Date De poinatge</th>
+            <th scope="col" style="background-color: #222B45;">Heure De pointage </th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let elt of listP;">
             <th scope="row" *ngIf="elt.employee != null">{{elt.employee.nomEmp}} {{elt.employee.prenomEmp}}</th>
-            <td>{{elt.DatePoin}} /  {{elt.heureEntree}}</td>
+            <td>{{elt.DatePoin}} </td>
+            <td>  {{elt.heureEntree}} </td>
        
         </tr>
     </tbody>

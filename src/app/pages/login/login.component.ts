@@ -27,7 +27,6 @@ user: any;
   }
 login(){
   this.auth.signin(this.loginForm).subscribe(res=>{
-    console.log(res)
     this.tokenStorage.saveToken(res.token);
     const user={
       id:res.id,
@@ -39,7 +38,7 @@ login(){
     }
 
     this.tokenStorage.saveUser(user);
-    setTimeout(() => this.showToastSuccess('top-right', 'success'), 1000);
+    setTimeout(() => this.showToastSuccess('top-right', 'success'), 100);
 
       this.isLoginFailed = false;
       this.isLoggedIn = true;
@@ -48,7 +47,7 @@ login(){
   },
   error=>{
     console.log(error)
-    setTimeout(() => this.showToastError('top-right', 'danger'), 1000);
+    setTimeout(() => this.showToastError('top-right', 'danger'), 100);
 
   })
 }

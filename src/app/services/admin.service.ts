@@ -72,9 +72,14 @@ export class AdminService {
 
    return this.http.post("http://localhost:8023/employee/pointer/"+code,body)
   }
-
+  getPointageByEmployername(name:any):Observable<any>{
+    return this.http.get("http://localhost:8023//pointage/employee/"+name);
+  }
   getMespointage(employee:any):Observable<any>{
     return this.http.get("http://localhost:8023/pointage/employee/"+employee);
   }
   
+  getPermissionByemployeeName(name:any):Observable<any>{
+    return this.http.get(("http://localhost:8023/pointage/name/employee/"+name))
+  }
 }

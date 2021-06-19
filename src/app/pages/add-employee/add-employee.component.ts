@@ -13,7 +13,8 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class AddEmployeeComponent implements OnInit {
 
-
+  errorMessage=""
+  successMessage=""
   public addFrm :Employee={}
   public departementList :Departements[]=[];
 
@@ -21,6 +22,8 @@ export class AddEmployeeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllDepartements();
+    this.errorMessage=""
+    this.successMessage=""
   }
 
   getAllDepartements(){
@@ -35,13 +38,14 @@ export class AddEmployeeComponent implements OnInit {
 
   addEmployee(){
     this.auth.signup(this.addFrm).subscribe(res=>{
-      console.log(res)
-      setTimeout(() => this.showToastSuccess('top-right', 'success'), 1000);
+      setTimeout(() => this.showToastSuccess('top-right', 'success'), 100);
+      this.successMessage=res.message;
 
     },
     error=>{
-      console.log(error);
-      setTimeout(() => this.showToastError('top-right', 'danger'), 1000);
+      console.log(error.error.message);
+      this.errorMessage=error.error.message;
+      setTimeout(() => this.showToastError('top-right', 'danger'), 100);
 
     })
   }
@@ -62,7 +66,7 @@ export class AddEmployeeComponent implements OnInit {
     //this.index += 1;
     this.toastrService.show(
       status || 'success',
-      `Employee ajouté avce succées`,
+      this.successMessage,
       { position, status });
   } 
   
@@ -71,7 +75,7 @@ export class AddEmployeeComponent implements OnInit {
     //this.index += 1;
     this.toastrService.show(
       status || 'danger',
-      `Erreur lors de l'ajout de l'employee`,
+      this.errorMessage,
       { position, status });
   } 
 }

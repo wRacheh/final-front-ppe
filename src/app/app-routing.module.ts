@@ -22,22 +22,23 @@ import { PointageComponent } from './pages/pointage/pointage.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 
 const routes: Routes = [
-  {path:'', component:HomeComponent},
-  {path: 'add-employee',component:AddEmployeeComponent, canActivate:[AdminGuard]},
-  {path: 'list-employee',component:ListEmployeeComponent, canActivate:[AdminGuard]},
-  {path: 'add-departement', component:AddDepartementComponent, canActivate:[AdminGuard]},
-  {path: 'list-departement',component:ListDepartementComponent, canActivate:[AdminGuard]},
-  {path: 'all/conge',component:AllCongeComponent, canActivate:[AdminGuard]},
-  {path: 'all/permission',component:AllPermissionComponent, canActivate:[AdminGuard]},
-  {path: 'login',component:LoginComponent,canActivate:[SecureService] },
-  {path: 'profile',component:ProfileComponent, canActivate:[AuthGuard]},
-  {path: 'demande/conge',component:DemandeCongeComponent, canActivate:[UserGuard]},
-  {path: 'demande/permission',component:DemandePermissionComponent, canActivate:[UserGuard]},
-  {path: 'pointage',component:PointageComponent},
-  {path: 'historique/conge',component:ListCongeComponent, canActivate:[UserGuard]}, 
-  {path: 'historique/permlssion',component:ListPermissionComponent, canActivate:[UserGuard]},
-  {path:'historique/pointage', component:HistoriquePointageComponent, canActivate:[UserGuard]},
-  {path:'pointage/all', component:AllPointageComponent, canActivate:[AdminGuard]}
+  { path: '', component: PointageComponent },
+  { path: 'home', component: HomeComponent },
+  { path: 'add-employee', component: AddEmployeeComponent, canActivate: [AdminGuard] },
+  { path: 'list-employee', component: ListEmployeeComponent, canActivate: [AdminGuard] },
+  { path: 'add-departement', component: AddDepartementComponent, canActivate: [AdminGuard] },
+  { path: 'list-departement', component: ListDepartementComponent, canActivate: [AdminGuard] },
+  { path: 'all/conge', component: AllCongeComponent, canActivate: [AdminGuard] },
+  { path: 'all/permission', component: AllPermissionComponent, canActivate: [AdminGuard] },
+  { path: 'login', component: LoginComponent, canActivate: [SecureService] },
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
+  { path: 'demande/conge', component: DemandeCongeComponent, canActivate: [UserGuard] },
+  { path: 'demande/permission', component: DemandePermissionComponent, canActivate: [UserGuard] },
+  { path: 'pointage', component: PointageComponent },
+  { path: 'historique/conge', component: ListCongeComponent, canActivate: [UserGuard] },
+  { path: 'historique/permlssion', component: ListPermissionComponent, canActivate: [UserGuard] },
+  { path: 'historique/pointage', component: HistoriquePointageComponent, canActivate: [UserGuard] },
+  { path: 'pointage/all', component: AllPointageComponent, canActivate: [AdminGuard] }
 ];
 
 @NgModule({

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, ɵChangeDetectorStatus } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Permission } from 'src/app/models/permission';
 import { PermissionService } from 'src/app/services/permission.service';
@@ -14,7 +14,9 @@ _permission: any
 currentPermission :any;
 currentIndex = -1;
 public closeResult = '';
-
+public permissionfrm ={
+  name:""
+}
   constructor(private modalService: NgbModal,private permission:PermissionService ) { }
 
   ngOnInit(): void {
@@ -27,7 +29,6 @@ public closeResult = '';
   getAllPermission (){
     this.permission.getAllPermission().subscribe(res=>{
       this.ListPerm=res
-      console.log(this.ListPerm)
     },error=>{
       console.log(error)
     })
@@ -42,7 +43,7 @@ public closeResult = '';
     this.permission.repondrePermission(this.currentPermission.idPer, this.currentPermission)
       .subscribe(
         response => {
-         this.getAllPermission()
+         this.getAllPermission();
         },
         error => {
           console.log(error);
@@ -54,6 +55,7 @@ public closeResult = '';
     this.permission.deletOnePermission(this.currentPermission.idPer)
       .subscribe(
         response => {
+          this.getAllPermission();
         },
         error => {
           console.log(error)
@@ -79,5 +81,17 @@ public closeResult = '';
     }
   }
 
-
+  getPermissionByNameEmployee(){
+    this.permission.getPermissionByemployeeName(this.permissionfrm.name).subscribe(
+      res=>{
+       this.ListPerm=res
+      },
+      error=>{
+        console.log(error)
+      }
+    )
+  }
+  refreshlist(){
+    this.getAllPermission();
+  }
 }

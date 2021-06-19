@@ -1,9 +1,16 @@
 <p>Les Demandes De Congé </p>
+<form >
+  <div class="form-group">
+  <input type="text" nbInput fullWidth placeholder="Nom employee" #name="ngModel" [(ngModel)]="frmname.name" name="name"  required >
+  <br><br>
+  <button class="btn btn-outline-primary" (click)="getCongeByEmployerName()" >Filtrer</button>
+  <button class="btn btn-outline-info" (click)="refreshlist()" type="reset" >Reset</button>
 
-<table class="table table-bordered border-primary" style="background-color: aliceblue;">
+  </div>
+</form>
+<table class="table table-bordered border-primary">
     <thead>
         <tr>
-            <th scope="col">#</th>
             <th scope="col">Date De Début</th>
             <th scope="col">Date De Fin</th>
             <th scope="col">Status</th>
@@ -16,11 +23,11 @@
     <tbody>
         <tr *ngFor="let elt of congelist;let i = index"
         [class.active]="i == currentIndex">
-            <th scope="row">{{elt.idCon}}</th>
+        
             <td>{{elt.dateDebut}}</td>
             <td>{{elt.dateFin}}</td>
-            <td>{{elt.motif}}</td>
             <td>{{elt.status}}</td>
+             <td>{{elt.motif}}</td>
 
             <td>
                 <button nbButton status="warning" hero  (click)="setActiveConge(elt, i)" (click)="open(content)">Modifier</button>
@@ -55,8 +62,8 @@
         <label class="input-group-text " for="inputGroupSelect03">Reponse</label>   
         <select class="form-select form-control" id="inputGroupSelect03" aria-label="Example select with button addon" #status="ngModel"  [(ngModel)]="currentConge.status"  name="status" >
           <option selected value="choose" disabled>Choose...</option>
-          <option value="Acceptée">Acceptée</option>
-          <option value="Refusée">Refusée</option>
+          <option value="Accepted">Accepted</option>
+          <option value="Refused">Refused</option>
         </select>
       </div>    </div>
     <div class="modal-footer">
